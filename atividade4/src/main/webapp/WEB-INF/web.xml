@@ -41,7 +41,7 @@
         <location>/erroJava.jsp</location>
     </error-page>
     <error-page>
-        <error-code>400</error-code>
+        <error-code>404</error-code>
         <location>/erroHtml.jsp</location>
     </error-page>
 </web-app>

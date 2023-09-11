@@ -21,7 +21,7 @@
             </br>
             <button type="submit">Submeter</button>
         </form>
-        <% String mensagem = (String )request.getSession().getAttribute("mensagem");
+        <% String mensagem = (String) request.getSession().getAttribute("mensagem");
         if ( mensagem != null ) {
         %> <%-- fim de scriptlet para inserir de dados de template fixa --%>
         <h2><%= mensagem %></h2>

@@ -54,7 +54,7 @@ public class MenuServlet extends HttpServlet {
             out.println("<h2>" + strSaudacao + " " + resposta + "! vc entrou corretamente</h2>");
             out.println("<a href=\"./welcome.jsp\"><br>Boas vindas</a>");
             out.println("<a href=\"./ErroJava\"><br>Página com erro de Java</a>");
-            out.println("<a href=\"./erro400.jsp\"><br>Página com erro de HTML</a>");
+            out.println("<a href=\"./erro300.jsp\"><br>Página com erro de HTML</a>");
             out.println("<a href=\"./SairServlet\"><br>Sair</a>");
             out.println("</body>");
             out.println("</html>");
