@@ -12,7 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>DCC192 - Atividade 4</h1>
+        <%
+            String strNumAtividade = getServletContext().getInitParameter("numAtividade");
+        %>
+        <h1>DCC192 - Atividade <%= strNumAtividade %></h1>
         <p>Digite seu nome e senha, depois clique no botão</p>
         <form action="MenuServlet" method="post">
             <input type="text" name="nome">
@@ -29,5 +32,18 @@
         } // fim do if
         %>
             
+        
+        
+        <sup style="position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;">Essa é a atividade <%= strNumAtividade %>
+        </sup>
+    
+        
     </body>
 </html>

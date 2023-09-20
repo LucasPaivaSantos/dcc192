@@ -109,6 +109,7 @@ public class MenuServlet extends HttpServlet {
         if (senhaRecebida.equals(senhaCorreta)) {
             //adiciona o atributo "logged" a sessão, inicializa "logged" com o valor de "nome"
             request.getSession(true).setAttribute("logged", nome);
+            request.getSession(true).setAttribute("mensagem", null);
             processRequest(request, response);
 
         } else {
