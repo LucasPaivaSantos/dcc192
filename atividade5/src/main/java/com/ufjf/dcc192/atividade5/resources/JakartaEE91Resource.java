@@ -1,4 +1,4 @@
-package com.ufjf.dcc192.atividade4.resources;
+package com.ufjf.dcc192.atividade5.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

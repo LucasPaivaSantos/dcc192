@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.ufjf.dcc192.atividade4;
+package com.ufjf.dcc192.atividade5;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * @author lucas
  */
-public class ErroJava extends HttpServlet {
+public class Sair extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,8 +27,10 @@ public class ErroJava extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //request.getRequestDispatcher("redirec").forward(request, response);
-        request.getRequestDispatcher(null).forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
+        request.getSession(true).invalidate();
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

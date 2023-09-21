@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <context-param>
-        <param-name>numAtividade</param-name>
-        <param-value>5</param-value>
+        <param-name>assignmentNumber</param-name>
+        <param-value>0</param-value>
     </context-param>
     <servlet>
-        <servlet-name>MenuServlet</servlet-name>
-        <servlet-class>com.ufjf.dcc192.atividade4.MenuServlet</servlet-class>
+        <servlet-name>Menu</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade5.Menu</servlet-class>
         <init-param>
-            <param-name>senha</param-name>
+            <param-name>initPassword</param-name>
             <param-value>1234</param-value>
-        </init-param>
-        <init-param>
-            <param-name>saudacao</param-name>
-            <param-value>Olá</param-value>
         </init-param>
     </servlet>
     <servlet>
         <servlet-name>ErroJava</servlet-name>
-        <servlet-class>com.ufjf.dcc192.atividade4.ErroJava</servlet-class>
+        <servlet-class>com.ufjf.dcc192.atividade5.ErroJava</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Sair</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade5.Sair</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>MenuServlet</servlet-name>
-        <url-pattern>/MenuServlet</url-pattern>
+        <servlet-name>Menu</servlet-name>
+        <url-pattern>/Menu</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ErroJava</servlet-name>
         <url-pattern>/ErroJava</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sair</servlet-name>
+        <url-pattern>/Sair</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            1
-        </session-timeout>
+        <session-timeout>1</session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/erroJava.jsp</location>
     </error-page>
     <error-page>
-        <error-code>404</error-code>
+        <exception-type>404</exception-type>
         <location>/erroHtml.jsp</location>
     </error-page>
 </web-app>

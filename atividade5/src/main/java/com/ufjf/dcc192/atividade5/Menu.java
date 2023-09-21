@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.ufjf.dcc192.atividade4;
+package com.ufjf.dcc192.atividade5;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,9 +16,7 @@ import java.io.PrintWriter;
  *
  * @author lucas
  */
-public class MenuServlet extends HttpServlet {
-
-    String strSaudacao;
+public class Menu extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,14 +29,9 @@ public class MenuServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //declara objeto sessão
         HttpSession session = request.getSession(true);
-        //recupera o valor de "logged", atributo de session
-        String resposta = (String) session.getAttribute("logged");
 
-        ServletContext myServletContext = getServletContext();
-        String strNumAtividade = myServletContext.getInitParameter("numAtividade");
-
+        String loggedUsr = (String) session.getAttribute("loggedUsr");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -50,13 +42,12 @@ public class MenuServlet extends HttpServlet {
             out.println("<title>A Simple Session Example</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>DCC192</h1>");
-            out.println("<h2>" + strSaudacao + " " + resposta + "! vc entrou corretamente</h2>");
+            out.println("<h1>DCC192 - Atividade funcionando </h1>");
+            out.println("<h2>! vc entrou corretamente</h2>");
             out.println("<a href=\"./welcome.jsp\"><br>Boas vindas</a>");
             out.println("<a href=\"./ErroJava\"><br>Página com erro de Java</a>");
             out.println("<a href=\"./erro300.jsp\"><br>Página com erro de HTML</a>");
             out.println("<a href=\"./SairServlet\"><br>Sair</a>");
-            out.println("<sup style=\"position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; text-align: center; padding: 10px 0;\">Essa é a atividade " + strNumAtividade + "</sup>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,21 +63,19 @@ public class MenuServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    public void init() {
-        strSaudacao = getInitParameter("saudacao");
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String sessionTimeout = "Sessão expirada, faça login novamente";
         HttpSession session = request.getSession(true);
-        String resp = (String) session.getAttribute("logged");
+        String loggedUser = (String) session.getAttribute("loggedUser");
 
-        if (resp == null) {
+        if (loggedUser == null) {
+            session.setAttribute("message", sessionTimeout);
             response.sendRedirect("index.jsp");
         } else {
             processRequest(request, response);
         }
+        processRequest(request, response);
     }
 
     /**
@@ -101,22 +90,22 @@ public class MenuServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //declara nome
-        String nome = request.getParameter("nome");
-        String senhaRecebida = request.getParameter("senha");
+        String nome = request.getParameter("username");
+        String senhaRecebida = request.getParameter("password");
 
         //recupera senha definida no web.xml
-        String senhaCorreta = getServletConfig().getInitParameter("senha");
+        String senhaCorreta = getServletConfig().getInitParameter("initPassword");
 
         if (senhaRecebida.equals(senhaCorreta)) {
             //adiciona o atributo "logged" a sessão, inicializa "logged" com o valor de "nome"
-            request.getSession(true).setAttribute("logged", nome);
-            request.getSession(true).setAttribute("mensagem", null);
+            request.getSession(true).setAttribute("loggedUsr", nome);
+            request.getSession(true).setAttribute("message", null);
             processRequest(request, response);
 
         } else {
-            String msg = "Senha inválida, tente novamente";
+            String message = "Senha inválida, tente novamente";
 
-            request.getSession(true).setAttribute("mensagem", msg);
+            request.getSession(true).setAttribute("message", message);
             response.sendRedirect("index.jsp");
         }
     }

@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Sep 5, 2023, 9:46:09 PM
+    Created on : Sep 21, 2023, 2:52:49 PM
     Author     : lucas
 --%>
 
@@ -12,27 +12,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>DCC192</h1>
+        <%
+            String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+        %>
+        <h1>DCC192 - Atividade <%= strNumAtividade %></h1>
         <p>Digite seu nome e senha, depois clique no botão</p>
-        <form action="MenuServlet" method="post">
-            <input type="text" name="nome">
+        <form action="Menu" method="post">
+            <input type="text" name="username">
             </br>
-            <input type="text" name="senha">
+            <input type="password" name="password">
             </br>
             <button type="submit">Submeter</button>
         </form>
-        <% String mensagem = (String) request.getSession().getAttribute("mensagem");
-        if ( mensagem != null ) {
+        <% String message = (String) request.getSession().getAttribute("message");
+        if ( message != null ) {
         %> <%-- fim de scriptlet para inserir de dados de template fixa --%>
-        <h2><%= mensagem %></h2>
+        <h2><%= message %></h2>
         <% // continua scriptlet
         } // fim do if
         %>
 
 
-        <%
-            String strNumAtividade = getServletContext().getInitParameter("numAtividade");
-        %>
+
         <sup style="position: fixed;
              bottom: 0;
              left: 0;
@@ -42,5 +43,7 @@
              text-align: center;
              padding: 10px 0;">Essa é a atividade <%= strNumAtividade %>
         </sup>
+
+
     </body>
 </html>

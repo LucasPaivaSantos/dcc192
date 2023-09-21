@@ -1,4 +1,4 @@
-package com.ufjf.dcc192.atividade4;
+package com.ufjf.dcc192.atividade5;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;

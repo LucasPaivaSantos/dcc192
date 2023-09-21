@@ -2,22 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.ufjf.dcc192.atividade4;
+package com.ufjf.dcc192.atividade5;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  *
  * @author lucas
  */
-@WebServlet(name = "SairServlet", urlPatterns = {"/SairServlet"})
-public class SairServlet extends HttpServlet {
+public class ErroJava extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,8 +27,8 @@ public class SairServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();
-        response.sendRedirect("./index.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher(null).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,15 +43,7 @@ public class SairServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        String resp = (String) session.getAttribute("logged");
-
-        if (resp == null) {
-            response.sendRedirect("index.jsp");
-        } else {
-            processRequest(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**
@@ -68,15 +57,7 @@ public class SairServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        String resp = (String) session.getAttribute("logged");
-
-        if (resp == null) {
-            response.sendRedirect("index.jsp");
-        } else {
-            processRequest(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

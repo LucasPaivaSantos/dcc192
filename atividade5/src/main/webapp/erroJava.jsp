@@ -1,6 +1,6 @@
 <%-- 
-    Document   : erro
-    Created on : Sep 9, 2023, 1:51:03 AM
+    Document   : erroJava
+    Created on : Sep 21, 2023, 2:56:05 PM
     Author     : lucas
 --%>
 
@@ -13,17 +13,5 @@
     </head>
     <body>
         <h2>Ocorreu um erro de java!</h2>
-        <%
-            String strNumAtividade = getServletContext().getInitParameter("numAtividade");
-        %>
-        <sup style="position: fixed;
-             bottom: 0;
-             left: 0;
-             width: 100%;
-             background-color: #333;
-             color: #fff;
-             text-align: center;
-             padding: 10px 0;">Essa é a atividade <%= strNumAtividade %>
-        </sup>
     </body>
 </html>

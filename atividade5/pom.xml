@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ufjf.dcc192</groupId>
-    <artifactId>atividade4</artifactId>
+    <artifactId>atividade5</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>atividade5-1.0-SNAPSHOT</name>
     
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>

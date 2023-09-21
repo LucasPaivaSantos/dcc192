@@ -1,6 +1,6 @@
 <%-- 
     Document   : welcome
-    Created on : Sep 5, 2023, 9:59:55 PM
+    Created on : Sep 21, 2023, 2:52:18 PM
     Author     : lucas
 --%>
 
@@ -17,19 +17,6 @@
         <h2>Senha Hardcoded</h2>
         <h2>Controle de Sessão</h2>
         <h2>JSP</h2>
-        <h2>Java DB</h2>
         <a href=./SairServlet>Sair</a>
-        <%
-        String strNumAtividade = getServletContext().getInitParameter("numAtividade");
-        %>
-        <sup style="position: fixed;
-             bottom: 0;
-             left: 0;
-             width: 100%;
-             background-color: #333;
-             color: #fff;
-             text-align: center;
-             padding: 10px 0;">Essa é a atividade <%= strNumAtividade %>
-        </sup>
     </body>
 </html>
