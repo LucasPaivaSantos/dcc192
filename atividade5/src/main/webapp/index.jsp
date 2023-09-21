@@ -9,14 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="styles.css" rel="stylesheet" />
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
-        %>
-        <h1>DCC192 - Atividade <%= strNumAtividade %></h1>
-        <p>Digite seu nome e senha, depois clique no botão</p>
+        <h1>Laboratório de Programação de Sistemas Web</h1>
+        <p>Faça Login</p>
         <form action="Menu" method="post">
             <input type="text" name="username">
             </br>
@@ -33,17 +31,9 @@
         %>
 
 
-
-        <sup style="position: fixed;
-             bottom: 0;
-             left: 0;
-             width: 100%;
-             background-color: #333;
-             color: #fff;
-             text-align: center;
-             padding: 10px 0;">Essa é a atividade <%= strNumAtividade %>
-        </sup>
-
-
+        <%
+        String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+        %>
+        <sup>Essa é a atividade <%= strNumAtividade %></sup>
     </body>
 </html>

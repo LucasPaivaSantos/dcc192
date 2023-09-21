@@ -4,6 +4,9 @@
  */
 package com.ufjf.dcc192.atividade5;
 
+import com.ufjf.dcc192.atividade5.model.DaoUsuario;
+import com.ufjf.dcc192.atividade5.model.Usuario;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  *
@@ -31,7 +35,10 @@ public class Menu extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
 
-        String loggedUsr = (String) session.getAttribute("loggedUsr");
+        ServletContext myServletContext = getServletContext();
+        String assignmentNumber = myServletContext.getInitParameter("assignmentNumber");
+        String loggedUser = (String) session.getAttribute("loggedUser");
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -39,15 +46,17 @@ public class Menu extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>A Simple Session Example</title>");
+            out.println("<link href=\"styles.css\" rel=\"stylesheet\" />");
+            out.println("<title>Menu</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>DCC192 - Atividade funcionando </h1>");
-            out.println("<h2>! vc entrou corretamente</h2>");
+            out.println("<h1>Laboratório de Programação de Sistemas Web</h1>");
+            out.println("<h2>Olá " + loggedUser + "! vc entrou corretamente</h2>");
             out.println("<a href=\"./welcome.jsp\"><br>Boas vindas</a>");
             out.println("<a href=\"./ErroJava\"><br>Página com erro de Java</a>");
             out.println("<a href=\"./erro300.jsp\"><br>Página com erro de HTML</a>");
-            out.println("<a href=\"./SairServlet\"><br>Sair</a>");
+            out.println("<a href=\"./Sair\"><br>Sair</a>");
+            out.println("<sup >Essa é a atividade " + assignmentNumber + "</sup>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -89,25 +98,26 @@ public class Menu extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //declara nome
-        String nome = request.getParameter("username");
-        String senhaRecebida = request.getParameter("password");
+        HttpSession session = request.getSession(true);
 
-        //recupera senha definida no web.xml
-        String senhaCorreta = getServletConfig().getInitParameter("initPassword");
+        String username = (String) request.getParameter("username");
+        String password = (String) request.getParameter("password");
 
-        if (senhaRecebida.equals(senhaCorreta)) {
-            //adiciona o atributo "logged" a sessão, inicializa "logged" com o valor de "nome"
-            request.getSession(true).setAttribute("loggedUsr", nome);
-            request.getSession(true).setAttribute("message", null);
-            processRequest(request, response);
+        DaoUsuario daoUsuario = new DaoUsuario(1, "ana", "1234");
+        List<Usuario> usuarios = daoUsuario.buscarTodos();
 
-        } else {
-            String message = "Senha inválida, tente novamente";
-
-            request.getSession(true).setAttribute("message", message);
-            response.sendRedirect("index.jsp");
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equals(username) && usuario.getSenha().equals(password)) {
+                session.setAttribute("loggedUser", username);
+                session.removeAttribute("message");
+                processRequest(request, response);
+                break;
+            }
         }
+
+        String userNotFound = "Nome de usuário ou senha inválidos";
+        session.setAttribute("message", userNotFound);
+        response.sendRedirect("index.jsp");
     }
 
     /**

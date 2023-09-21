@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="styles.css" rel="stylesheet" />
         <title>JSP Page</title>
     </head>
     <body>
@@ -17,6 +18,12 @@
         <h2>Senha Hardcoded</h2>
         <h2>Controle de Sessão</h2>
         <h2>JSP</h2>
-        <a href=./SairServlet>Sair</a>
+        <h2>Validação com Banco</h2>
+        <a href=./Menu>Voltar</a>
+        <a href=./Sair>Sair</a>
+        <%
+        String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+        %>
+        <sup>Essa é a atividade <%= strNumAtividade %></sup>
     </body>
 </html>
