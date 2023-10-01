@@ -79,7 +79,7 @@ public class Menu extends HttpServlet {
         String loggedUser = (String) session.getAttribute("loggedUser");
 
         if (loggedUser == null) {
-            session.setAttribute("message", sessionTimeout);
+            session.setAttribute("msg", sessionTimeout);
             response.sendRedirect("index.jsp");
         } else {
             processRequest(request, response);
@@ -100,7 +100,7 @@ public class Menu extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
 
-        String username = (String) request.getParameter("username");
+        String username = (String) request.getParameter("userName");
         String password = (String) request.getParameter("password");
 
         DaoUsuario daoUsuario = new DaoUsuario(1, "ana", "1234");
@@ -109,14 +109,14 @@ public class Menu extends HttpServlet {
         for (Usuario usuario : usuarios) {
             if (usuario.getNome().equals(username) && usuario.getSenha().equals(password)) {
                 session.setAttribute("loggedUser", username);
-                session.removeAttribute("message");
+                session.removeAttribute("msg");
                 processRequest(request, response);
                 break;
             }
         }
 
         String userNotFound = "Nome de usuário ou senha inválidos";
-        session.setAttribute("message", userNotFound);
+        session.setAttribute("msg", userNotFound);
         response.sendRedirect("index.jsp");
     }
 

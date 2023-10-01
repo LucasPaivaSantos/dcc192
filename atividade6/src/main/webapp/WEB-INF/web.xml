@@ -20,6 +20,10 @@
         <servlet-name>Sair</servlet-name>
         <servlet-class>com.ufjf.dcc192.atividade6.Sair</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade6.Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ErroJava</servlet-name>
         <url-pattern>/ErroJava</url-pattern>
@@ -32,14 +36,14 @@
         <servlet-name>Sair</servlet-name>
         <url-pattern>/Sair</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/erroHtml.jsp</location>
-    </error-page>
 </web-app>
