@@ -10,10 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="styles.css" rel="stylesheet" />
-        <title>JSP Page</title>
+        <title>Erro Java DCC192</title>
     </head>
     <body>
-        <h2>Ocorreu um erro de java!</h2>
+        <h2>Ocorreu um erro de Java!</h2>
         <form action="Controller" method="post">
             <input type="hidden" name="operacao" value="menu">
             <button type="submit">Menu</button>

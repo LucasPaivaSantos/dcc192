@@ -4,38 +4,25 @@
         <param-name>assignmentNumber</param-name>
         <param-value>6</param-value>
     </context-param>
-    <servlet>
-        <servlet-name>ErroJava</servlet-name>
-        <servlet-class>com.ufjf.dcc192.atividade6.ErroJava</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Menu</servlet-name>
-        <servlet-class>com.ufjf.dcc192.atividade6.Menu</servlet-class>
-        <init-param>
-            <param-name>initPassword</param-name>
-            <param-value>1234</param-value>
-        </init-param>
-    </servlet>
-    <servlet>
-        <servlet-name>Sair</servlet-name>
-        <servlet-class>com.ufjf.dcc192.atividade6.Sair</servlet-class>
-    </servlet>
+    <filter>
+        <filter-name>SessionManager</filter-name>
+        <filter-class>com.ufjf.dcc192.atividade6.SessionManager</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionManager</filter-name>
+        <url-pattern>/erroHtml</url-pattern>
+        <url-pattern>/erroJava</url-pattern>
+        <url-pattern>/menu</url-pattern>
+        <url-pattern>/welcome</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.ufjf.dcc192.atividade6.Controller</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ErroJava</servlet-name>
-        <url-pattern>/ErroJava</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Menu</servlet-name>
-        <url-pattern>/Menu</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Sair</servlet-name>
-        <url-pattern>/Sair</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -46,4 +33,12 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/erroHtml.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/erroJava.jsp</location>
+    </error-page>
 </web-app>

@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="styles.css" rel="stylesheet" />
-        <title>JSP Page</title>
+        <title>Erro HTML DCC192</title>
     </head>
     <body>
         <h2>Ocorreu um erro de HTML!</h2>
