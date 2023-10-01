@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Sep 30, 2023, 9:23:27 PM
+    Created on : Oct 1, 2023, 12:13:28 AM
     Author     : lucas
 --%>
 
@@ -22,10 +22,10 @@
             </br>
             <button type="submit">Submeter</button>
         </form>
-        <% String message = (String) request.getSession().getAttribute("message");
-        if ( message != null ) {
+        <% String msg = (String) request.getSession().getAttribute("msg");
+        if ( msg != null ) {
         %> <%-- fim de scriptlet para inserir de dados de template fixa --%>
-        <h2><%= message %></h2>
+        <h2><%= msg %></h2>
         <% // continua scriptlet
         } // fim do if
         %>

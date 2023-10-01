@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-   version="5.0">
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <context-param>
+        <param-name>assignmentNumber</param-name>
+        <param-value>6</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>ErroJava</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade6.ErroJava</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Menu</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade6.Menu</servlet-class>
+        <init-param>
+            <param-name>initPassword</param-name>
+            <param-value>1234</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>Sair</servlet-name>
+        <servlet-class>com.ufjf.dcc192.atividade6.Sair</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErroJava</servlet-name>
+        <url-pattern>/ErroJava</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Menu</servlet-name>
+        <url-pattern>/Menu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sair</servlet-name>
+        <url-pattern>/Sair</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>1</session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/erroHtml.jsp</location>
+    </error-page>
 </web-app>
