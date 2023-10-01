@@ -69,12 +69,15 @@ public class Controller extends HttpServlet {
                             rd = request.getRequestDispatcher("menu.jsp");
                             rd.forward(request, response);
                             break;
-                        case "ajuda":
-                            rd = request.getRequestDispatcher("ajuda.jsp");
+                        case "welcome":
+                            rd = request.getRequestDispatcher("welcome.jsp");
                             rd.forward(request, response);
                             break;
-                        case "erro_java":
+                        case "erroJava":
                             throw new ServletException();
+                        case "erroHtml":
+                            rd = request.getRequestDispatcher("erro300.jsp");
+                            rd.forward(request, response);
                         case "sair":
                             session.setAttribute("loggedIn", "FALSE");
                             rd = request.getRequestDispatcher("index.jsp");

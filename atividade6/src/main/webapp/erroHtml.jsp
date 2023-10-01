@@ -14,8 +14,14 @@
     </head>
     <body>
         <h2>Ocorreu um erro de HTML!</h2>
-        <a href=./Menu>Voltar</a>
-        <a href=./Sair>Sair</a>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="menu">
+            <button type="submit">Menu</button>
+        </form>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="sair">
+            <button type="submit">Sair</button>
+        </form>
         <%
         String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
         %>

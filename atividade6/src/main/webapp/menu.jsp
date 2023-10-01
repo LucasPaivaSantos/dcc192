@@ -21,13 +21,26 @@
         <% 
         } 
         %>
-        <a href="./welcome.jsp"><br>Boas vindas</a>
-        <a href="./ErroJava"><br>Página com erro de Java</a>
-        <a href="./erro300.jsp"><br>Página com erro de HTML</a>
-        <a href="./Sair"><br>Sair</a>
-            <%
-            String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
-            %>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="welcome">
+            <button type="submit">Boas vindas</button>
+        </form>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="erroJava">
+            <button type="submit">Erro Java</button>
+        </form>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="erroHtml">
+            <button type="submit">Erro HTML</button>
+        </form>
+        <form action="Controller" method="post">
+            <input type="hidden" name="operacao" value="sair">
+            <button type="submit">Sair</button>
+        </form>
+
+        <%
+        String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+        %>
         <sup>Essa é a atividade <%= strNumAtividade %></sup>
     </body>
 </html>
