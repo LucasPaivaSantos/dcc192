@@ -4,7 +4,7 @@
     Author     : lucas
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,26 +17,33 @@
         <p>Faça Login</p>
         <form action="Controller" method="post">
             <input type="text" name="userName">
-            </br>
+            <br> <!-- Use "br" instead of "br" -->
             <input type="password" name="password">
-            </br>
+            <br> <!-- Use "br" instead of "br" -->
             <input type="hidden" name="operacao" value="login">
             <button type="submit">Submeter</button>
         </form>
 
-        <% String loggedUsers = getServletContext().getInitParameter("loggedUsers");
+        <% 
+        Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
         if (loggedUsers != null) {
         %>
         <div class="users-counter">Usuários logados no momento: <%= loggedUsers %></div>
-        <% 
+        <%
+        } 
+        else {
+        %>
+        <div class="users-counter">Usuários logados no momento: 0</div>
+        <%
         } 
         %>
 
-        <% String msg = (String) request.getSession().getAttribute("msg");
+        <% 
+        String msg = (String) request.getSession().getAttribute("msg"); 
         if (msg != null) {
         %>
         <h2><%= msg %></h2>
-        <% 
+        <%
         } 
         %>
 

@@ -22,10 +22,18 @@ public class Listener1 implements ServletContextListener, HttpSessionListener, H
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println(">>> Context Initialized");
+        if (sce.getServletContext() == null) {
+            sce.getServletContext().setAttribute("userCount", 0); // Inicializa o contador
+        }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        Integer userCount = (Integer) sce.getServletContext().getAttribute("userCount");
+        if (userCount != null && userCount > 0) {
+            userCount--;
+            sce.getServletContext().setAttribute("userCount", userCount);
+        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

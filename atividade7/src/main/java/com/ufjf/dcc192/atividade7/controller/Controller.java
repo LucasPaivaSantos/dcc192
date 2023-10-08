@@ -7,6 +7,7 @@ package com.ufjf.dcc192.atividade7.controller;
 import com.ufjf.dcc192.atividade7.model.DaoUsuario;
 import com.ufjf.dcc192.atividade7.model.Usuario;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,23 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public void incrementUserCount(ServletContext context) {
+        Integer userCount = (Integer) context.getAttribute("userCount");
+        if (userCount == null) {
+            userCount = 0;
+        }
+        userCount++;
+        context.setAttribute("userCount", userCount);
+    }
+
+    public void decrementUserCount(ServletContext context) {
+        Integer userCount = (Integer) context.getAttribute("userCount");
+        if (userCount != null && userCount > 0) {
+            userCount--;
+            context.setAttribute("userCount", userCount);
+        }
+    }
+
     public boolean login(String _user, String _pass) {
         String dbUsername = getServletContext().getInitParameter("dbUsername");
         String dbPassword = getServletContext().getInitParameter("dbPassword");
@@ -51,6 +69,7 @@ public class Controller extends HttpServlet {
             if (operacao.equals("login")) {
                 // Valida login e vai para menu
                 if (login(userName, password)) {
+                    incrementUserCount(getServletContext()); // Incrementa o contador
                     session.setAttribute("loggedIn", "TRUE");
                     session.setAttribute("usuario", userName);
                     rd = request.getRequestDispatcher("menu.jsp");
@@ -86,6 +105,7 @@ public class Controller extends HttpServlet {
                             rd = request.getRequestDispatcher("erro300.jsp");
                             rd.forward(request, response);
                         case "sair":
+                            decrementUserCount(getServletContext());
                             session.setAttribute("loggedIn", "FALSE");
                             rd = request.getRequestDispatcher("index.jsp");
                             rd.forward(request, response);
@@ -98,6 +118,7 @@ public class Controller extends HttpServlet {
                 }
             }
         } else {
+            decrementUserCount(getServletContext());
             session.setAttribute("loggedIn", "FALSE");
             rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);

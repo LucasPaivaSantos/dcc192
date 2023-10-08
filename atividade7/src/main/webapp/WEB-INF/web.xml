@@ -5,7 +5,7 @@
         <param-value>7</param-value>
     </context-param>
     <context-param>
-        <param-name>loggedUsers</param-name>
+        <param-name>userCount</param-name>
         <param-value>0</param-value>
     </context-param>
     <context-param>

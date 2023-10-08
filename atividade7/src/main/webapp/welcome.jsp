@@ -21,6 +21,7 @@
             <li>JSP</li>
             <li>Validação com Banco</li>
             <li>MVC</li>
+            <li>Event Listeners</li>
         </ol>
         <form action="Controller" method="post">
             <input type="hidden" name="operacao" value="menu">
@@ -30,6 +31,21 @@
             <input type="hidden" name="operacao" value="sair">
             <button type="submit">Sair</button>
         </form>
+
+        <% 
+        Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
+        if (loggedUsers != null) {
+        %>
+        <div class="users-counter">Usuários logados no momento: <%= loggedUsers %></div>
+        <%
+        } 
+        else {
+        %>
+        <div class="users-counter">Usuários logados no momento: 0</div>
+        <%
+        } 
+        %>
+
         <%
         String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
         %>
