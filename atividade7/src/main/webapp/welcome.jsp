@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="styles.css" rel="stylesheet" />
+        <link href="/atividade7/styles/default.css" rel="stylesheet" />
         <title>Welcome DCC192</title>
     </head>
     <body>

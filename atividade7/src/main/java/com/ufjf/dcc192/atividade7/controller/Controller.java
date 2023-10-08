@@ -45,7 +45,6 @@ public class Controller extends HttpServlet {
         String password = request.getParameter("password");
         String operacao = request.getParameter("operacao");
 
-//        System.out.println(operacao);
         // Verifica se está tentando logar
         session = request.getSession(true);
         if (operacao != null) {
@@ -79,22 +78,21 @@ public class Controller extends HttpServlet {
                             break;
                         case "welcome":
                             rd = request.getRequestDispatcher("welcome.jsp");
-                            System.out.println(rd);
                             rd.forward(request, response);
                             break;
-                        case "erro_java":
+                        case "erroJava":
                             throw new ServletException();
+                        case "erroHtml":
+                            rd = request.getRequestDispatcher("erro300.jsp");
+                            rd.forward(request, response);
                         case "sair":
                             session.setAttribute("loggedIn", "FALSE");
-                            session.removeAttribute("msg");
-                            rd = request.getRequestDispatcher("login.jsp");
+                            rd = request.getRequestDispatcher("index.jsp");
                             rd.forward(request, response);
                             break;
                         default:
-                            // se opcao inválida faz logoff e vai para tela de erro
                             session.setAttribute("loggedIn", "FALSE");
-                            session.removeAttribute("msg");
-                            rd = request.getRequestDispatcher("erro.jsp");
+                            rd = request.getRequestDispatcher("index.jsp");
                             rd.forward(request, response);
                     }
                 }

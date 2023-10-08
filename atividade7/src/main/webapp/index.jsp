@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="styles.css" rel="stylesheet" />
+        <link href="/atividade7/styles/default.css" rel="stylesheet" />
         <title>Login DCC192</title>
     </head>
     <body>
@@ -23,6 +23,14 @@
             <input type="hidden" name="operacao" value="login">
             <button type="submit">Submeter</button>
         </form>
+
+        <% String loggedUsers = getServletContext().getInitParameter("loggedUsers");
+        if (loggedUsers != null) {
+        %>
+        <div class="users-counter">Usuários logados no momento: <%= loggedUsers %></div>
+        <% 
+        } 
+        %>
 
         <% String msg = (String) request.getSession().getAttribute("msg");
         if (msg != null) {
