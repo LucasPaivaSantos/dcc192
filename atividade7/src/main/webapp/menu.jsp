@@ -13,11 +13,13 @@
         <title>Menu DCC192</title>
     </head>
     <body>
-        <% String usuario = (String) request.getSession().getAttribute("usuario");
-        if (usuario != null) {
+        <%
+String usuario = (String) request.getSession().getAttribute("usuario");
+if (usuario != null) {
+    usuario = usuario.substring(0, 1).toUpperCase() + usuario.substring(1); // Converte a primeira letra para maiúscula
         %>
         <h1>Laboratório de Programação de Sistemas Web</h1>
-        <h2>Olá <%= usuario%>! Você entrou corretamente</h2>
+        <h2>Olá <%= usuario %>! Você entrou corretamente</h2>
         <% 
         } 
         %>
