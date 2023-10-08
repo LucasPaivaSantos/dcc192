@@ -10,11 +10,11 @@
     </context-param>
     <context-param>
         <param-name>dbUsername</param-name>
-        <param-value>ana</param-value>
+        <param-value>dcc192</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>1234</param-value>
+        <param-value>java</param-value>
     </context-param>
     <filter>
         <filter-name>SessionManager</filter-name>

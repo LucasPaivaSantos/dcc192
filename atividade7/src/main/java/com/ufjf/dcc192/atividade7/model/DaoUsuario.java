@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author anastacia
+ * @author lucas
  */
 public class DaoUsuario {
 // Configura essas variáveis de acordo com o seu banco
@@ -53,7 +53,7 @@ public class DaoUsuario {
             while (rs.next()) {
                 Usuario temp = new Usuario();
                 // pega todos os atributos da pessoa
-                temp.setId(rs.getInt("matricula"));
+                temp.setId(rs.getInt("id"));
                 temp.setNome(rs.getString("nome"));
                 temp.setSenha(rs.getString("senha"));
                 resultados.add(temp);
@@ -71,7 +71,7 @@ public class DaoUsuario {
         conectar();
         String com = "UPDATE usuario SET nome = '" + aluno.getNome()
                 + "', senha ='" + aluno.getSenha()
-                + "' WHERE  matricula = '" + aluno.getId() + "';";
+                + "' WHERE  id = '" + aluno.getId() + "';";
         try {
             comando.executeUpdate(com);
         } catch (SQLException e) {
@@ -99,6 +99,8 @@ public class DaoUsuario {
                 temp.setId(rs.getInt("id"));
                 temp.setNome(rs.getString("nome"));
                 temp.setSenha(rs.getString("senha"));
+            } else {
+                temp = null;
             }
             return temp;
         } catch (SQLException e) {
