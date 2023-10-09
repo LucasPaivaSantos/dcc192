@@ -5,6 +5,7 @@
  */
 package com.ufjf.dcc192.atividade7.controller;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.http.HttpSessionAttributeListener;
@@ -19,6 +20,23 @@ import jakarta.servlet.http.HttpSessionListener;
  */
 public class Listener1 implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
 
+    public void incrementUserCount(ServletContext context) {
+        Integer userCount = (Integer) context.getAttribute("userCount");
+        if (userCount == null) {
+            userCount = 0;
+        }
+        userCount++;
+        context.setAttribute("userCount", userCount);
+    }
+
+    public void decrementUserCount(ServletContext context) {
+        Integer userCount = (Integer) context.getAttribute("userCount");
+        if (userCount != null && userCount > 0) {
+            userCount--;
+            context.setAttribute("userCount", userCount);
+        }
+    }
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println(">>> Context Initialized");
@@ -29,11 +47,6 @@ public class Listener1 implements ServletContextListener, HttpSessionListener, H
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        Integer userCount = (Integer) sce.getServletContext().getAttribute("userCount");
-        if (userCount != null && userCount > 0) {
-            userCount--;
-            sce.getServletContext().setAttribute("userCount", userCount);
-        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -45,6 +58,8 @@ public class Listener1 implements ServletContextListener, HttpSessionListener, H
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
+//        ServletContext context = se.getSession().getServletContext();
+//        decrementUserCount(context);
         System.out.println(">>> Session Destroyed");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

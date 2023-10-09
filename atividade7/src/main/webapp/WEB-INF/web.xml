@@ -31,6 +31,9 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
+    <listener>
+        <listener-class>com.ufjf.dcc192.atividade7.controller.Listener1</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.ufjf.dcc192.atividade7.controller.Controller</servlet-class>
