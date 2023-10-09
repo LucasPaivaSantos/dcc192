@@ -69,7 +69,12 @@ public class Controller extends HttpServlet {
             if (operacao.equals("login")) {
                 // Valida login e vai para menu
                 if (login(userName, password)) {
-                    incrementUserCount(getServletContext());
+                    loggedIn = (String) session.getAttribute("loggedIn"); // Inicialize loggedIn aqui
+
+                    if (loggedIn == null || !loggedIn.equals("TRUE")) { // Verifique se loggedIn não é null
+                        incrementUserCount(getServletContext());
+                        System.out.println("o usuário " + userName + " se conectou");
+                    }
                     session.setAttribute("loggedIn", "TRUE");
                     session.setAttribute("usuario", userName);
                     rd = request.getRequestDispatcher("menu.jsp");
@@ -85,6 +90,7 @@ public class Controller extends HttpServlet {
                 // Gerenciamento de sessao
                 loggedIn = (String) session.getAttribute("loggedIn");
                 if (loggedIn == null || !loggedIn.equals("TRUE")) {
+                    System.out.println("um usuário se desconectou");
                     session.setAttribute("msg", "Sua sessão expirou!");
                     rd = request.getRequestDispatcher("index.jsp");
                     rd.forward(request, response);
@@ -105,6 +111,7 @@ public class Controller extends HttpServlet {
                             rd = request.getRequestDispatcher("erro300.jsp");
                             rd.forward(request, response);
                         case "sair":
+                            System.out.println("um usuário se desconectou");
                             decrementUserCount(getServletContext());
                             session.setAttribute("loggedIn", "FALSE");
                             rd = request.getRequestDispatcher("index.jsp");
@@ -118,6 +125,7 @@ public class Controller extends HttpServlet {
                 }
             }
         } else {
+            System.out.println("um usuário se desconectou");
             decrementUserCount(getServletContext());
             session.setAttribute("loggedIn", "FALSE");
             rd = request.getRequestDispatcher("index.jsp");
