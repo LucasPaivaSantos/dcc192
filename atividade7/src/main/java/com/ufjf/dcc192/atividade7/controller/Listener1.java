@@ -47,6 +47,7 @@ public class Listener1 implements ServletContextListener, HttpSessionListener, H
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        System.out.println(">>> Context Destroyed");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -54,13 +55,14 @@ public class Listener1 implements ServletContextListener, HttpSessionListener, H
     public void sessionCreated(HttpSessionEvent se) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         System.out.println(">>> Session Created");
+        // incrementUserCount(se.getSession().getServletContext());
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-//        ServletContext context = se.getSession().getServletContext();
-//        decrementUserCount(context);
         System.out.println(">>> Session Destroyed");
+        decrementUserCount(se.getSession().getServletContext());
+        //   decrementUserCount(se.getSession().getServletContext());
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

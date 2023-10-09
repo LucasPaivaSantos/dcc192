@@ -69,7 +69,7 @@ public class Controller extends HttpServlet {
             if (operacao.equals("login")) {
                 // Valida login e vai para menu
                 if (login(userName, password)) {
-                    incrementUserCount(getServletContext()); // Incrementa o contador
+                    incrementUserCount(getServletContext());
                     session.setAttribute("loggedIn", "TRUE");
                     session.setAttribute("usuario", userName);
                     rd = request.getRequestDispatcher("menu.jsp");
@@ -77,7 +77,7 @@ public class Controller extends HttpServlet {
                 } else {
                     session.setAttribute("loggedIn", "FALSE");
                     session.setAttribute("msg", "Usuário ou Senha inválido");
-                    rd = request.getRequestDispatcher("login.jsp");
+                    rd = request.getRequestDispatcher("index.jsp");
                     rd.forward(request, response);
                 }
             } // senao, verifica se já está logado
@@ -86,7 +86,7 @@ public class Controller extends HttpServlet {
                 loggedIn = (String) session.getAttribute("loggedIn");
                 if (loggedIn == null || !loggedIn.equals("TRUE")) {
                     session.setAttribute("msg", "Sua sessão expirou!");
-                    rd = request.getRequestDispatcher("login.jsp");
+                    rd = request.getRequestDispatcher("index.jsp");
                     rd.forward(request, response);
                 } // Executa a operação desejada
                 else {
@@ -120,7 +120,7 @@ public class Controller extends HttpServlet {
         } else {
             decrementUserCount(getServletContext());
             session.setAttribute("loggedIn", "FALSE");
-            rd = request.getRequestDispatcher("login.jsp");
+            rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         }
     }

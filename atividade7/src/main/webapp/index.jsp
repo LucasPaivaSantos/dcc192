@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="/atividade7/styles/default.css" rel="stylesheet" />
+        <script src="/atividade7/scripts/onWindowClose.js"></script>
         <title>Login DCC192</title>
     </head>
     <body>
