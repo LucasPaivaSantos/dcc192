@@ -45,12 +45,12 @@ if (usuario != null) {
         Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
         if (loggedUsers != null) {
         %>
-        <div class="users-counter">Usuários logados no momento: <%= loggedUsers %></div>
-        <%
+        <div class="users-counter">Usuários logados no momento: <div><%= loggedUsers %></div>
+        </div><%
         } 
         else {
         %>
-        <div class="users-counter">Usuários logados no momento: 0</div>
+        <div class="users-counter">Usuários logados no momento: <div>0</div></div>
         <%
         } 
         %>
