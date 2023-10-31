@@ -14,7 +14,7 @@
         <script src="/atividade8/scripts/windowWatcher.js"></script>
         <title>Welcome DCC192</title>
     </head>
-    <body>
+    <body class="bg-secondary p-2 text-white">
         <h1>Conteúdos de Cada Semana</h1>
         <ol>
             <li>Conhecendo Servlet</li>
@@ -26,16 +26,18 @@
             <li>Event Listeners</li>
             <li>Frameworks</li>
         </ol>
-        <form action="Controller" method="post">
-            <input type="hidden" name="operacao" value="menu">
-            <button type="submit">Menu</button>
-        </form>
-        <form action="Controller" method="post">
-            <input type="hidden" name="operacao" value="sair">
-            <button type="submit">Sair</button>
-        </form>
+        <div class="btn-group" role="group">
+            <form action="Controller" method="post">
+                <input type="hidden" name="operacao" value="menu">
+                <button type="submit" class="btn btn-outline-dark">Menu</button>
+            </form>
+            <form action="Controller" method="post">
+                <input type="hidden" name="operacao" value="sair">
+                <button type="submit" class="btn btn-outline-dark">Sair</button>
+            </form>
+        </div>
         <%
-                String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+            String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
         %>
         <%
         Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
@@ -60,7 +62,7 @@
         String msg = (String) request.getSession().getAttribute("msg"); 
         if (msg != null) {
         %>
-        <h2><%= msg %></h2>
+        <h2 class="mb-4"><%= msg %></h2>
         <%
         } 
         %>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : erroHtml
-    Created on : Oct 18, 2023, 3:49:33 PM
-    Author     : lucas
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,18 +8,20 @@
         <script src="/atividade8/scripts/windowWatcher.js"></script>
         <title>Erro HTML DCC192</title>
     </head>
-    <body>
-        <h2>Ocorreu um erro de HTML!</h2>
-        <form action="Controller" method="post">
-            <input type="hidden" name="operacao" value="menu">
-            <button type="submit">Menu</button>
-        </form>
-        <form action="Controller" method="post">
-            <input type="hidden" name="operacao" value="sair">
-            <button type="submit">Sair</button>
-        </form>
+    <body class="bg-secondary p-2 text-white">
+        <h2 class="mb-4">Ocorreu um erro de HTML!</h2>
+        <div class="btn-group" role="group"> <!-- Utilizando a classe btn-group para agrupar os botões -->
+            <form action="Controller" method="post">
+                <input type="hidden" name="operacao" value="menu">
+                <button type="submit" class="btn btn-outline-dark btn-sm">Menu</button>
+            </form>
+            <form action="Controller" method="post">
+                <input type="hidden" name="operacao" value="sair">
+                <button type="submit" class="btn btn-outline-dark btn-sm">Sair</button>
+            </form>
+        </div>
         <%
-                String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
+            String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
         %>
         <%
         Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
@@ -50,7 +46,7 @@
         String msg = (String) request.getSession().getAttribute("msg"); 
         if (msg != null) {
         %>
-        <h2><%= msg %></h2>
+        <h2 class="mb-4"><%= msg %></h2>
         <%
         } 
         %>
