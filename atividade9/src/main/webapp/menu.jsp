@@ -3,8 +3,11 @@
     Created on : Nov 7, 2023, 3:15:43 PM
     Author     : lucas
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="com.ufjf.dcc192.atividade9.model.Usuario" %>
+<%@ page import="com.ufjf.dcc192.atividade9.model.DaoUsuario" %>
+<%@ page import="javax.persistence.EntityManagerFactory" %>
+<%@ page import="javax.persistence.Persistence" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,21 +44,30 @@
             <input type="hidden" name="operacao" value="sair">
             <button type="submit" class="btn btn-outline-dark btn-sm float-left mb-2">Sair</button>
         </form>
+
+        <%
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAExemploPU");
+        DaoUsuario ujc = new DaoUsuario(emf);
+        List<Usuario> u = ujc.buscarTodos();
+        for (Usuario i : u) { %>
+        <p><%= i.getNome() %></p>
+        <% }
+        emf.close();
+        %>
+
         <%
         String strNumAtividade = getServletContext().getInitParameter("assignmentNumber");
         %>
         <%
         Integer loggedUsers = (Integer) getServletContext().getAttribute("userCount"); 
-        if (loggedUsers != null) {
-        %>
+        if (loggedUsers != null) { %>
         <div class="users-counter mb-4">
             <div>Essa é a atividade <%= strNumAtividade %></div>
             <div>Usuários logados no momento: <div><%= loggedUsers %></div> </div>
         </div>
         <%
         } 
-        else {
-        %>
+        else { %>
         <div class="users-counter mb-4">
             <div>Essa é a atividade <%= strNumAtividade %></div>
             <div>Usuários logados no momento: <div>0</div> </div>
