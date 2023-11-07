@@ -4,7 +4,13 @@
  */
 package com.ufjf.dcc192.atividade9.model;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -12,18 +18,44 @@ import java.io.Serializable;
  * @author lucas
  */
 @Entity
+@Table(name = "USUARIO")
+@NamedQueries({
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
+    @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
+    @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
 
-    private String nome;
-
-    private String senha;
-
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "ID")
     private Integer id;
+    @Basic(optional = false)
+    @Column(name = "NOME")
+    private String nome;
+    @Basic(optional = false)
+    @Column(name = "SENHA")
+    private String senha;
 
     public Usuario() {
     }
 
     public Usuario(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario(Integer id, String nome, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,14 +73,6 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override
@@ -73,7 +97,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "code.Usuario[ id=" + id + " ]";
+        return "com.ufjf.dcc192.atividade9.model.Usuario[ id=" + id + " ]";
     }
 
 }
